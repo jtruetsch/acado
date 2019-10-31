@@ -894,7 +894,7 @@ returnValue ExportNLPSolver::setLSQObjective(const Objective& _objective)
 
 		DVector vFx = Fx.evaluate( epFx );
 
-		objEvFx.setup("evFx", Eigen::Map<DMatrix>(vFx.data(), NY, NX), REAL, ACADO_WORKSPACE);
+		objEvFx.setup("evFx", Eigen::Map<DMatrix::Base>(vFx.data(), NY, NX), REAL, ACADO_WORKSPACE);
 	}
 	else
 	{
@@ -912,7 +912,7 @@ returnValue ExportNLPSolver::setLSQObjective(const Objective& _objective)
 
 		DVector vFu = Fu.evaluate( epFu );
 
-		objEvFu.setup("evFu", Eigen::Map<DMatrix>(vFu.data(), NY, NU), REAL, ACADO_WORKSPACE);
+		objEvFu.setup("evFu", Eigen::Map<DMatrix::Base>(vFu.data(), NY, NU), REAL, ACADO_WORKSPACE);
 	}
 	else
 	{
@@ -1077,7 +1077,7 @@ returnValue ExportNLPSolver::setLSQObjective(const Objective& _objective)
 
 		DVector vFx = FEndTermX.evaluate( epFEndTermX );
 
-		objEvFxEnd.setup("evFxEnd", Eigen::Map<DMatrix>(vFx.data(), NYN, NX), REAL, ACADO_WORKSPACE);
+		objEvFxEnd.setup("evFxEnd", Eigen::Map<DMatrix::Base>(vFx.data(), NYN, NX), REAL, ACADO_WORKSPACE);
 	}
 	else
 	{
@@ -1371,7 +1371,7 @@ returnValue ExportNLPSolver::setConstraints(const OCP& _ocp)
 
 			if (v.isZero() == false)
 			{
-				pacEvHx.setup("evHx", Eigen::Map<DMatrix>(v.data(), dimPacH, NX), REAL, ACADO_WORKSPACE);
+                          pacEvHx.setup("evHx", Eigen::Map<DMatrix::Base>(v.data(), dimPacH, NX), REAL, ACADO_WORKSPACE);
 			}
 		}
 		else
@@ -1389,7 +1389,7 @@ returnValue ExportNLPSolver::setConstraints(const OCP& _ocp)
 
 			if (v.isZero() == false)
 			{
-				pacEvHu.setup("evHu", Eigen::Map<DMatrix>(v.data(), dimPacH, NU), REAL, ACADO_WORKSPACE);
+                          pacEvHu.setup("evHu", Eigen::Map<DMatrix::Base>(v.data(), dimPacH, NU), REAL, ACADO_WORKSPACE);
 			}
 		}
 		else
