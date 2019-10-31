@@ -1408,7 +1408,7 @@ returnValue ExportNLPSolver::setConstraints(const OCP& _ocp)
 
 			if (v.isZero() == false)
 			{
-				pacEvDDH.setup("evDDH", Eigen::Map<DMatrix>(v.data(), (NX+NU), (NX+NU)), REAL, ACADO_WORKSPACE);
+				pacEvDDH.setup("evDDH", Eigen::Map<DMatrix::Base>(v.data(), (NX+NU), (NX+NU)), REAL, ACADO_WORKSPACE);
 			}
 		}
 		else if( secondOrder )
