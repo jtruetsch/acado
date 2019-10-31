@@ -172,8 +172,8 @@ returnValue GenericMatrix<T>::symmetrize( )
 template<typename T>
 bool GenericMatrix< T >::isPositiveSemiDefinite( ) const
 {
-	Eigen::LDLT< Base > foo( Base::size() );
-	foo.compute( *this );
+	Eigen::LDLT< Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor | Eigen::AutoAlign> > foo( Base::size() );
+	foo.compute( this->template cast<double>() );
 	if (foo.info() == Eigen::Success && foo.isPositive() == true)
 		return true;
 
@@ -183,7 +183,8 @@ bool GenericMatrix< T >::isPositiveSemiDefinite( ) const
 template<typename T>
 bool GenericMatrix< T >::isPositiveDefinite( ) const
 {
-	if (this->llt().info() == Eigen::Success)
+	Eigen::LLT< Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor | Eigen::AutoAlign> > foo( this->template cast<double>() );
+	if (foo.info() == Eigen::Success)
 		return true;
 
 	return false;
