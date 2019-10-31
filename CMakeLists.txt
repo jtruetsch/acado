@@ -242,6 +242,7 @@ INSTALL(
 	DESTINATION
 		${INSTALL_INCLUDE_DIR}
 	FILES_MATCHING PATTERN "*.hpp"
+	PATTERN "*Make*" EXCLUDE
 )
 INSTALL(
 	DIRECTORY
@@ -249,17 +250,9 @@ INSTALL(
 	DESTINATION
 		${INSTALL_INCLUDE_DIR}
 	FILES_MATCHING PATTERN "*.ipp"
+	PATTERN "*Make*" EXCLUDE
 )
 
-#
-# Install Eigen3
-#
-INSTALL(
-	DIRECTORY
-		external_packages/eigen3
-	DESTINATION
-		${INSTALL_INCLUDE_DIR}/external_packages
-)
 
 #
 # Install qpOASES embedded
